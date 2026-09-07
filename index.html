@@ -240,15 +240,12 @@ var STEPS=[
       '<p class="t dim">{Туманность Лагуна. Трифид. Скопления, которым по нескольку миллионов лет. В одно поле зрения бинокля здесь помещается около тысячи звёзд.}</p>',
  stars:{n:320,speed:.11,tw:1.2}},
 
-{f:'f6', eb:'M20 · Трифид · 17′', ov:'neb2',
+{f:'f6', eb:'M20 · Трифид · 17′', ov:'neb2', hold:true,
  html:'<p class="t">{Здесь я нашёл её.}</p>'+
-      '<p class="t dim">{В семнадцати угловых минутах от Трифида, в двадцати пяти — от скопления M21. Между двумя самыми красивыми объектами этого неба.}</p>',
- stars:{n:260,speed:.09,tw:1.1}},
-
-{f:'f7', eb:'', ov:'reticle', hold:true,
- html:'<span class="big chars">{{Anastasia Alengoz}}</span>'+
-      '<div class="mn" style="--d:2.1s"><span id="rollA">18h 03m 13.816s</span> &nbsp;·&nbsp; <span id="rollB">−22° 49′ 51.22″</span> &nbsp;·&nbsp; 9.16 mag</div>',
- stars:{n:340,speed:.05,tw:1.6,bloom:true}},
+      '<p class="t dim">{В семнадцати угловых минутах от Трифида, в двадцати пяти — от скопления M21. И дал ей имя.}</p>'+
+      '<span class="big chars">{{Anastasia Alengoz}}</span>'+
+      '<div class="mn" style="--d:4.6s"><span id="rollA">18h 03m 13.816s</span> &nbsp;·&nbsp; <span id="rollB">−22° 49′ 51.22″</span> &nbsp;·&nbsp; 9.16 mag</div>',
+ stars:{n:300,speed:.06,tw:1.5,bloom:true}},
 
 {f:'f1', eb:'Галактическая широта −0.32°', ov:'plane',
  html:'<p class="t">{Она лежит точно в плоскости Млечного Пути.}</p>'+
@@ -604,7 +601,7 @@ function render(){
     setTimeout(function(){
       rollTo(document.getElementById('rollA'),'18h 03m 13.816s',1500);
       rollTo(document.getElementById('rollB'),'−22° 49′ 51.22″',1800);
-    },1400);
+    },4400);
   }
   var b=document.getElementById('openSky');
   if(b) b.onclick=function(ev){ ev.stopPropagation(); openSky(); };

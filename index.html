@@ -205,7 +205,7 @@ svg.on .lb{opacity:1}
 
 <div id="clock">&nbsp;</div><div id="cnt">01 / 11</div>
 <button id="snd" aria-label="звук"><span class="bars"><i></i><i></i><i></i></span><span id="sndt">Звук</span></button>
-<audio id="au" preload="auto" loop src="assets/theme.mp3"></audio>
+<audio id="au" preload="none" loop src="assets/theme.mp3"></audio>
 <div id="tip"><i></i>Коснись экрана</div>
 <div id="bar"><button id="back">&larr;&nbsp; Назад</button><button id="go">Дальше&nbsp; <span class="ar">&rarr;</span></button></div>
 
@@ -656,7 +656,8 @@ addEventListener('resize',function(){
 /* ===================== музыка ===================== */
 var au=document.getElementById('au'), snd=document.getElementById('snd'), sndt=document.getElementById('sndt');
 var auOK=false, wantPlay=true, fadeT=null;
-au.addEventListener('canplaythrough',function(){ auOK=true; snd.classList.add('show'); },{once:true});
+au.addEventListener('canplay',function(){ auOK=true; snd.classList.add('show'); },{once:true});
+setTimeout(function(){ try{ au.load(); }catch(e){} },1200);
 au.addEventListener('error',function(){ auOK=false; snd.classList.remove('show'); });
 function fadeTo(v,ms){
   clearInterval(fadeT); var st=au.volume, t0=performance.now();

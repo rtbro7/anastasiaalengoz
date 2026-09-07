@@ -39,6 +39,8 @@ body{color:var(--cream);font-family:var(--serif);font-weight:300;
   opacity:0;transform:scale(1.14);filter:blur(10px);
   transition:opacity 1.5s var(--e),transform 2.6s var(--e),filter 1.5s var(--e)}
 #frames img.cur{opacity:1;transform:scale(1.0);filter:blur(0)}
+#frames img.pull{transform:scale(1.75);filter:blur(4px)}
+#frames img.pull.cur{transform:scale(1.0);filter:blur(0);transition:opacity 1.2s var(--e),transform 5.5s cubic-bezier(.12,.7,.18,1),filter 2s var(--e)}
 #frames img.prev{opacity:0;transform:scale(1.3);filter:blur(14px)}
 #stars{z-index:1}
 #over{z-index:3;overflow:visible}
@@ -228,7 +230,7 @@ var STEPS=[
       '<p class="t">{И в моём. Навсегда.}</p>',
  stars:{n:180,speed:.04,tw:.8}},
 
-{f:'f3', eb:'8 сентября',
+{f:'f9', pull:true, eb:'8 сентября',
  html:'<span class="big chars">{{С днём рождения,}}</span><span class="big chars" style="--o:1.1">{{любовь моя.}}</span>',
  stars:{n:220,speed:.05,tw:1.4,bloom:true}},
 
@@ -292,14 +294,15 @@ function frame(name){
   }
   return imgs[name];
 }
-function showFrame(name){
+function showFrame(name,pull){
   if(!name){ Object.keys(imgs).forEach(function(k){ if(imgs[k].classList.contains('cur')){ imgs[k].classList.remove('cur'); imgs[k].classList.add('prev'); } }); return; }
   var im=frame(name);
   Object.keys(imgs).forEach(function(k){
     if(k===name) return;
     if(imgs[k].classList.contains('cur')){ imgs[k].classList.remove('cur'); imgs[k].classList.add('prev'); }
   });
-  im.classList.remove('prev');
+  im.classList.remove('prev'); im.classList.remove('cur');
+  im.classList.toggle('pull', !!pull); void im.offsetWidth;
   requestAnimationFrame(function(){ im.classList.add('cur'); });
 }
 function prefetch(i){ if(STEPS[i]&&STEPS[i].f) frame(STEPS[i].f); }
@@ -556,7 +559,7 @@ var i=0,lock=false;
 function render(){
   var s=STEPS[i];
   slides.forEach(function(el,k){ el.classList.toggle('on',k===i); });
-  showFrame(s.f);
+  showFrame(s.f, s.pull);
   showOverlay(s.ov);
   cfg=Object.assign({n:200,speed:.06,tw:1,bloom:false,ignite:false},s.stars||{});
   if(cfg.ignite && born===0) born=0.02; else if(!cfg.ignite) born=1;
@@ -598,7 +601,7 @@ addEventListener('touchend',function(e){
 
 addEventListener('resize',function(){
   var nw=innerWidth>innerHeight;
-  if(nw!==WIDE){ WIDE=nw; Object.keys(imgs).forEach(function(k){ imgs[k].remove(); }); imgs={}; showFrame(STEPS[i].f); }
+  if(nw!==WIDE){ WIDE=nw; Object.keys(imgs).forEach(function(k){ imgs[k].remove(); }); imgs={}; showFrame(STEPS[i].f, STEPS[i].pull); }
   seed(); ovCache={}; overEl.innerHTML=''; showOverlay(STEPS[i].ov);
 });
 

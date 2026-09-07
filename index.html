@@ -47,8 +47,7 @@ body{color:var(--cream);font-family:var(--serif);font-weight:300;
 @keyframes gr{0%{background-position:0 0}25%{background-position:-40px 30px}
 50%{background-position:60px -20px}75%{background-position:-25px -55px}100%{background-position:35px 45px}}
 #vig{z-index:5;background:
-  linear-gradient(180deg,rgba(4,4,10,.62) 0%,rgba(4,4,10,0) 20%,rgba(4,4,10,.05) 33%,rgba(4,4,10,.72) 60%,rgba(4,4,10,.96) 82%,#04040a 100%),
-  linear-gradient(90deg,rgba(4,4,10,.66) 0%,rgba(4,4,10,.16) 46%,rgba(4,4,10,0) 74%)}
+  linear-gradient(180deg,rgba(4,4,10,.38) 0%,rgba(4,4,10,0) 14%,rgba(4,4,10,0) 58%,rgba(4,4,10,.46) 80%,rgba(4,4,10,.74) 100%)}
 
 /* ---------- overlay vectors ---------- */
 #over svg{position:absolute;inset:0;width:100%;height:100%;opacity:0;transition:opacity .9s var(--e)}
@@ -65,9 +64,9 @@ svg.on .dr{stroke-dashoffset:0}
 svg.on .lb{opacity:1}
 
 /* ---------- copy ---------- */
-#copy{position:fixed;inset:0;z-index:6;display:flex;flex-direction:column;justify-content:flex-end;
-  padding:calc(env(safe-area-inset-top) + 46px) var(--pad) calc(env(safe-area-inset-bottom) + 92px)}
-.deck{position:relative;width:100%;max-width:35rem}
+#copy{position:fixed;inset:0;z-index:6;display:flex;flex-direction:column;justify-content:flex-end;align-items:center;
+  padding:calc(env(safe-area-inset-top) + 46px) var(--pad) calc(env(safe-area-inset-bottom) + 96px);text-align:center}
+.deck{position:relative;width:100%;max-width:36rem;margin:0 auto}
 .sl{position:absolute;left:0;bottom:0;width:100%;visibility:hidden;
   max-height:70vh;overflow-y:auto;scrollbar-width:none}
 .sl::-webkit-scrollbar{display:none}
@@ -78,16 +77,16 @@ svg.on .lb{opacity:1}
   opacity:0;transform:translateY(6px);transition:opacity .8s var(--e) .25s,transform .8s var(--e) .25s}
 .sl.on .eb{opacity:1;transform:none}
 
-.t{font-size:clamp(1.34rem,5.3vw,1.95rem);line-height:1.52;font-weight:200;color:var(--cream);
+.t{font-size:clamp(1.6rem,6.4vw,2.35rem);line-height:1.4;font-weight:200;color:var(--cream);text-shadow:0 1px 18px rgba(4,4,10,.85);
   text-wrap:balance}
 .t + .t{margin-top:.62em}
-.t.dim{color:rgba(239,231,216,.6);font-size:clamp(1.05rem,4.1vw,1.32rem);line-height:1.62}
+.t.dim{color:rgba(239,231,216,.7);font-size:clamp(1.05rem,4.2vw,1.35rem);line-height:1.6;max-width:30em;margin-left:auto;margin-right:auto}
 .w{display:inline-block;overflow:hidden;vertical-align:bottom;padding-bottom:.06em;margin-bottom:-.06em}
 .w i{display:inline-block;font-style:inherit;transform:translateY(112%);opacity:0;
   transition:transform 1s var(--e),opacity 1s var(--e);transition-delay:var(--d)}
 .sl.on .w i{transform:none;opacity:1}
 
-.big{display:block;font-size:clamp(2.05rem,8.4vw,3.1rem);line-height:1.08;margin:.4em 0 .1em;
+.big{display:block;font-size:clamp(2.3rem,9.6vw,3.6rem);line-height:1.08;margin:.4em 0 .1em;
   letter-spacing:.01em}
 .chars i{display:inline-block;font-style:normal;opacity:0;transform:translateY(28%) scale(.94);filter:blur(6px);
   transition:opacity .9s var(--e),transform .9s var(--e),filter .9s var(--e);transition-delay:var(--d)}
@@ -105,9 +104,10 @@ svg.on .lb{opacity:1}
   border-bottom:1px solid rgba(239,231,216,.08);
   opacity:0;transform:translateY(7px);transition:opacity .6s var(--e) var(--d),transform .6s var(--e) var(--d)}
 .sl.on .data div{opacity:1;transform:none}
+.data{text-align:left}
 .data b{font-weight:300;color:rgba(239,231,216,.42);text-transform:uppercase;letter-spacing:.15em;font-size:9px;align-self:center}
 .data s{text-decoration:none;white-space:nowrap}
-.acts{display:flex;gap:24px;margin-top:1.7em;flex-wrap:wrap}
+.acts{display:flex;gap:24px;margin-top:1.7em;flex-wrap:wrap;justify-content:center}
 .acts a,.acts button{font-family:var(--mono);font-weight:400;font-size:10px;letter-spacing:.26em;text-transform:uppercase;
   color:var(--cream);background:none;border:0;border-bottom:1px solid rgba(239,231,216,.38);
   text-decoration:none;padding:0 0 6px;cursor:pointer;transition:border-color .3s,color .3s;
@@ -181,33 +181,33 @@ var STEPS=[
  html:'<p class="t">{Подними голову.}</p>',
  stars:{n:150,ignite:true,speed:.06,tw:1}},
 
-{f:'f1', eb:'19:21 · юг · 59° над горизонтом', ov:'teapot',
+{f:null, eb:'19:21 · юг · 59° над горизонтом', ov:'teapot',
  html:'<p class="t">{Сегодня Дева уходит.}</p>'+
       '<p class="t dim">{Твоё созвездие уже низко на западе и тонет в закате. К девяти его не будет.}</p>'+
       '<p class="t">{А в зенит выходит Стрелец.}</p>',
  stars:{n:230,speed:.08,tw:1}},
 
-{f:'f1', eb:'Sagittarius', ov:'teapot',
+{f:null, eb:'Sagittarius', ov:'teapot',
  html:'<p class="t">{Его зовут Кротос.}</p>'+
       '<p class="t dim">{Не кентавр — сатир, сын Пана, выросший на Геликоне среди Муз. Греки считали, что стрельбу из лука придумал он. Музы упросили Зевса поднять его на небо, чтобы он остался с ними навсегда.}</p>',
  stars:{n:230,speed:.08,tw:1}},
 
-{f:'f1', eb:'γ² Sgr · Альнасл · «остриё»', ov:'arrow',
+{f:null, eb:'γ² Sgr · Альнасл · «остриё»', ov:'arrow',
  html:'<p class="t">{Его стрела уже две тысячи лет нацелена в одну точку.}</p>'+
       '<p class="t">{В Антарес. В сердце Скорпиона.}</p>',
  stars:{n:200,speed:.07,tw:1}},
 
-{f:'f2', eb:'Sagittarius A*', ov:'galaxy',
+{f:null, eb:'Sagittarius A*', ov:'galaxy',
  html:'<p class="t">{Но смотреть надо не на стрелу.}</p>'+
       '<p class="t dim">{Стрелец — единственное направление, в котором виден центр нашей Галактики. Двадцать семь тысяч световых лет отсюда, за пылью, вращается чёрная дыра массой в четыре с лишним миллиона Солнц. Всё, что ты видишь ночью, крутится вокруг неё.}</p>',
  stars:{n:120,speed:.05,tw:.6}},
 
-{f:'f3', eb:'7° от центра Галактики', ov:'neb',
+{f:'f1', eb:'Поле снимка · 4°', ov:'neb',
  html:'<p class="t">{В семи градусах от неё — самый плотный участок неба.}</p>'+
       '<p class="t dim">{Туманность Лагуна. Трифид. Скопления, которым по нескольку миллионов лет. В одно поле зрения бинокля здесь помещается около тысячи звёзд.}</p>',
  stars:{n:320,speed:.11,tw:1.2}},
 
-{f:'f4', eb:'M20 · Трифид · 17′', ov:'neb2',
+{f:'f8', eb:'M20 · Трифид · 17′', ov:'neb2',
  html:'<p class="t">{Среди них была одна свободная.}</p>'+
       '<p class="t dim">{В семнадцати угловых минутах от Трифида. В двадцати пяти — от скопления M21.}</p>',
  stars:{n:260,speed:.09,tw:1.1}},
@@ -293,6 +293,7 @@ function frame(name){
   return imgs[name];
 }
 function showFrame(name){
+  if(!name){ Object.keys(imgs).forEach(function(k){ if(imgs[k].classList.contains('cur')){ imgs[k].classList.remove('cur'); imgs[k].classList.add('prev'); } }); return; }
   var im=frame(name);
   Object.keys(imgs).forEach(function(k){
     if(k===name) return;
@@ -301,7 +302,7 @@ function showFrame(name){
   im.classList.remove('prev');
   requestAnimationFrame(function(){ im.classList.add('cur'); });
 }
-function prefetch(i){ if(STEPS[i]) frame(STEPS[i].f); }
+function prefetch(i){ if(STEPS[i]&&STEPS[i].f) frame(STEPS[i].f); }
 
 /* ===================== оверлеи ===================== */
 var TEAPOT=[
@@ -316,14 +317,71 @@ var TEAPOT=[
 ];
 var LINKS=[['d','e'],['e','z'],['z','p'],['p','d'],['g2','d'],['g2','e'],['l','d'],['l','p'],['p','s'],['s','t'],['t','z']];
 
-function proj(w,h){
-  // простая гномоническая проекция вокруг центра поля, RA растёт влево
-  var cra=279.0, cde=-28.0, scale=Math.min(w,h)/26; // px на градус
-  return function(ra,de){
-    var x=w/2 - (ra-cra)*Math.cos(de*Math.PI/180)*scale;
-    var y=h/2 - (de-cde)*scale;
-    return [x,y];
-  };
+var ANTARES={ra:247.3519,de:-26.4320};
+var PLATE_FOV=4.0; // измерено по M8: 1.558° = 0.381 кадра
+var CROPS={f1:{cx:.5,cy:.5,span:.96},f3:{cx:.46,cy:.62,span:.62},f6:{cx:.5,cy:.5,span:.30},f7:{cx:.5,cy:.5,span:.34},f8:{cx:.5,cy:.5,span:.44}};
+var OBJ={M20:{ra:270.596,de:-23.030,n:'M20 · Трифид'},M8:{ra:270.904,de:-24.387,n:'M8 · Лагуна'},M21:{ra:271.054,de:-22.490,n:'M21'}};
+function plateFrac(ra,de){
+  var dx=(ra-RA)*Math.cos(DEC*Math.PI/180), dy=de-DEC;
+  return [0.5-dx/PLATE_FOV, 0.5-dy/PLATE_FOV];
+}
+function plateToScreen(px,py,crop,w,h){
+  var sx=(px-(crop.cx-crop.span/2))/crop.span, sy=(py-(crop.cy-crop.span/2))/crop.span;
+  var fw=2/3, xf=(sx-(1-fw)/2)/fw, yf=sy;          // портретный кроп 1000×1500 из квадрата
+  var fr=2/3, vr=w/h, xs,ys;
+  if(vr<fr){ xs=((xf-0.5)/(vr/fr)+0.5)*w; ys=yf*h; }
+  else{ ys=((yf-0.5)/(fr/vr)+0.5)*h; xs=xf*w; }
+  return [xs,ys];
+}
+var MAG={g2:2.98,d:2.72,e:1.85,l:2.82,p:3.17,s:2.05,z:2.60,t:3.32};
+var NAMES={g2:'Альнасл',e:'Каус Аустралис',s:'Нунки',l:'Каус Бореалис'};
+function gnomonic(pts,w,h,padX,padTop,padBot){
+  // центр — середина по RA/Dec
+  var ra0=0,de0=0; pts.forEach(function(q){ra0+=q.ra;de0+=q.de;}); ra0/=pts.length; de0/=pts.length;
+  var R=Math.PI/180, sd0=Math.sin(de0*R), cd0=Math.cos(de0*R);
+  var raw=pts.map(function(q){
+    var dA=(q.ra-ra0)*R, sd=Math.sin(q.de*R), cd=Math.cos(q.de*R);
+    var den=sd0*sd+cd0*cd*Math.cos(dA);
+    return {xi:cd*Math.sin(dA)/den, eta:(cd0*sd-sd0*cd*Math.cos(dA))/den};
+  });
+  var xs=raw.map(function(r){return r.xi}), ys=raw.map(function(r){return r.eta});
+  var minx=Math.min.apply(0,xs),maxx=Math.max.apply(0,xs),miny=Math.min.apply(0,ys),maxy=Math.max.apply(0,ys);
+  var k=Math.min((w-2*padX)/(maxx-minx||1),(h-padTop-padBot)/(maxy-miny||1));
+  var cxi=(minx+maxx)/2, ceta=(miny+maxy)/2, cx=w/2, cy=padTop+(h-padTop-padBot)/2;
+  return {k:k, map:function(r){ return [cx-(r.xi-cxi)*k, cy-(r.eta-ceta)*k]; }, raw:raw, degPx:k*R};
+}
+function lab(w,x,y,txt,d,dx){
+  dx=dx||8;
+  if(x>w*0.58) return '<text class="lb" x="'+(x-dx).toFixed(1)+'" y="'+y.toFixed(1)+'" text-anchor="end" style="--d:'+d+'s">'+txt+'</text>';
+  return '<text class="lb" x="'+(x+dx).toFixed(1)+'" y="'+y.toFixed(1)+'" style="--d:'+d+'s">'+txt+'</text>';
+}
+function chartSVG(w,h,withAntares){
+  var pts=TEAPOT.slice(); pts.push({k:'her',ra:RA,de:DEC});
+  if(withAntares) pts.push({k:'ant',ra:ANTARES.ra,de:ANTARES.de});
+  var g=gnomonic(pts,w,h,w*0.12,h*0.10,h*0.46);
+  var pos={}; pts.forEach(function(q,i){ pos[q.k]=g.map(g.raw[i]); });
+  var s='',d=0;
+  LINKS.forEach(function(L){
+    var a=pos[L[0]],b=pos[L[1]],l=len(a[0],a[1],b[0],b[1]);
+    s+='<line class="st dr" x1="'+a[0].toFixed(1)+'" y1="'+a[1].toFixed(1)+'" x2="'+b[0].toFixed(1)+'" y2="'+b[1].toFixed(1)+'" style="--L:'+l.toFixed(0)+';--d:'+(0.3+d).toFixed(2)+'s"/>';
+    d+=0.1;
+  });
+  TEAPOT.forEach(function(t){
+    var a=pos[t.k], r=Math.max(1.3,Math.min(4.6,4.4-0.8*MAG[t.k]));
+    s+='<circle class="pt" cx="'+a[0].toFixed(1)+'" cy="'+a[1].toFixed(1)+'" r="'+r.toFixed(1)+'"/>';
+    if(NAMES[t.k]) s+=lab(w,a[0],a[1]+3,NAMES[t.k],1.6,r+7);
+  });
+  var her=pos.her, box=g.degPx*PLATE_FOV; // поле снимка
+  s+='<circle class="pt big" cx="'+her[0].toFixed(1)+'" cy="'+her[1].toFixed(1)+'" r="2.2"/>';
+  s+='<rect class="st warm dr" x="'+(her[0]-box/2).toFixed(1)+'" y="'+(her[1]-box/2).toFixed(1)+'" width="'+box.toFixed(1)+'" height="'+box.toFixed(1)+'" style="--L:'+(4*box).toFixed(0)+';--d:1.9s"/>';
+  s+=lab(w,her[0],her[1]-box/2-8,'Anastasia Alengoz · снимок 4°',2.3,box/2+6);
+  if(withAntares){
+    var a=pos.g2,b=pos.ant,L2=len(a[0],a[1],b[0],b[1]);
+    s+='<line class="st warm dr" x1="'+a[0].toFixed(1)+'" y1="'+a[1].toFixed(1)+'" x2="'+b[0].toFixed(1)+'" y2="'+b[1].toFixed(1)+'" style="--L:'+L2.toFixed(0)+';--d:1.4s"/>';
+    s+='<circle class="pt big" cx="'+b[0].toFixed(1)+'" cy="'+b[1].toFixed(1)+'" r="4.2"/>';
+    s+=lab(w,b[0],b[1]-13,'Антарес · 21°',2.4,0);
+  }
+  return s;
 }
 function svgEl(inner){
   var s=document.createElementNS('http://www.w3.org/2000/svg','svg');
@@ -333,36 +391,11 @@ function svgEl(inner){
 function len(x1,y1,x2,y2){ return Math.hypot(x2-x1,y2-y1); }
 
 function makeOverlay(kind,w,h){
-  var p=proj(w,h), s='';
-  if(kind==='teapot'||kind==='arrow'){
-    var pos={};
-    TEAPOT.forEach(function(t){ pos[t.k]=p(t.ra,t.de); });
-    var d=0;
-    LINKS.forEach(function(L){
-      var a=pos[L[0]],b=pos[L[1]],l=len(a[0],a[1],b[0],b[1]);
-      s+='<line class="st dr" x1="'+a[0].toFixed(1)+'" y1="'+a[1].toFixed(1)+'" x2="'+b[0].toFixed(1)+'" y2="'+b[1].toFixed(1)+'" style="--L:'+l.toFixed(0)+';--d:'+(0.35+d).toFixed(2)+'s"/>';
-      d+=0.09;
-    });
-    TEAPOT.forEach(function(t){
-      var a=pos[t.k];
-      s+='<circle class="pt" cx="'+a[0].toFixed(1)+'" cy="'+a[1].toFixed(1)+'" r="2"/>';
-      if(t.n) s+='<text class="lb" x="'+(a[0]+9).toFixed(1)+'" y="'+(a[1]+3).toFixed(1)+'" style="--d:1.5s">'+t.n+'</text>';
-    });
-    var her=p(RA,DEC);
-    s+='<circle class="pt big" cx="'+her[0].toFixed(1)+'" cy="'+her[1].toFixed(1)+'" r="2.6"/>';
-    s+='<circle class="st warm dr" cx="'+her[0].toFixed(1)+'" cy="'+her[1].toFixed(1)+'" r="13" style="--L:82;--d:1.7s"/>';
-    s+='<text class="lb" x="'+(her[0]+20).toFixed(1)+'" y="'+(her[1]+3).toFixed(1)+'" style="--d:2.1s">Здесь</text>';
-    if(kind==='arrow'){
-      var g2=pos.g2, ant=[g2[0]+Math.min(w,h)/26*21.5, g2[1]-6]; // Антарес — на запад, вправо в этой проекции
-      ant[0]=Math.min(ant[0], w-58);
-      var L=len(g2[0],g2[1],ant[0],ant[1]);
-      s+='<line class="st warm dr" x1="'+g2[0].toFixed(1)+'" y1="'+g2[1].toFixed(1)+'" x2="'+ant[0].toFixed(1)+'" y2="'+ant[1].toFixed(1)+'" style="--L:'+L.toFixed(0)+';--d:.5s"/>';
-      s+='<circle class="pt big" cx="'+ant[0].toFixed(1)+'" cy="'+ant[1].toFixed(1)+'" r="3.4"/>';
-      s+='<text class="lb" x="'+(ant[0]-4).toFixed(1)+'" y="'+(ant[1]-14).toFixed(1)+'" text-anchor="end" style="--d:2.2s">Антарес</text>';
-    }
-  }
+  var s='';
+  if(kind==='teapot'){ s=chartSVG(w,h,false); }
+  else if(kind==='arrow'){ s=chartSVG(w,h,true); }
   else if(kind==='galaxy'){
-    var cx=w/2, cy=h*0.40, rx=Math.min(w*0.40,190), ry=rx*0.20;
+    var cx=w/2, cy=h*0.30, rx=Math.min(w*0.40,190), ry=rx*0.20;
     s+='<ellipse class="st faint dr" cx="'+cx+'" cy="'+cy+'" rx="'+rx+'" ry="'+ry+'" style="--L:'+(2*Math.PI*Math.sqrt((rx*rx+ry*ry)/2)).toFixed(0)+';--d:.35s"/>';
     s+='<ellipse class="st dr" cx="'+cx+'" cy="'+cy+'" rx="'+(rx*0.22)+'" ry="'+(ry*1.5)+'" style="--L:'+(2*Math.PI*rx*0.25).toFixed(0)+';--d:.9s"/>';
     s+='<circle class="pt big" cx="'+cx+'" cy="'+cy+'" r="3"/>';
@@ -375,19 +408,25 @@ function makeOverlay(kind,w,h){
     s+='<text class="lb" x="'+((ex+cx)/2)+'" y="'+((ey+cy)/2+30)+'" text-anchor="middle" style="--d:2.4s">27 000 световых лет</text>';
   }
   else if(kind==='neb'||kind==='neb2'){
-    var items = kind==='neb'
-      ? [[0.30,0.62,'M8 · Лагуна'],[0.60,0.34,'M20 · Трифид']]
-      : [[0.52,0.42,'M20 · Трифид'],[0.30,0.24,'M21']];
-    items.forEach(function(it,i){
-      var x=w*it[0], y=h*it[1], r=Math.min(w,h)*0.075;
+    var crop = kind==='neb' ? CROPS.f1 : CROPS.f8;
+    var keys = kind==='neb' ? ['M20','M8','M21'] : ['M20','M21'];
+    var i=0;
+    keys.forEach(function(k){
+      var o=OBJ[k], pf=plateFrac(o.ra,o.de), P=plateToScreen(pf[0],pf[1],crop,w,h);
+      var x=P[0],y=P[1]; if(x<20||x>w-20||y<20||y>h*0.62) return;
+      var r = k==='M8' ? Math.min(w,h)*0.11 : Math.min(w,h)*0.07;
       s+='<circle class="st dr" cx="'+x.toFixed(0)+'" cy="'+y.toFixed(0)+'" r="'+r.toFixed(0)+'" style="--L:'+(2*Math.PI*r).toFixed(0)+';--d:'+(0.4+i*0.35)+'s"/>';
-      var lx=x+r+34;
-      s+='<line class="st faint dr" x1="'+(x+r).toFixed(0)+'" y1="'+y.toFixed(0)+'" x2="'+lx.toFixed(0)+'" y2="'+y.toFixed(0)+'" style="--L:34;--d:'+(1.1+i*0.35)+'s"/>';
-      s+='<text class="lb" x="'+(lx+7).toFixed(0)+'" y="'+(y+3).toFixed(0)+'" style="--d:'+(1.5+i*0.35)+'s">'+it[2]+'</text>';
+      s+='<line class="st faint dr" x1="'+x.toFixed(0)+'" y1="'+(y+r).toFixed(0)+'" x2="'+x.toFixed(0)+'" y2="'+(y+r+14).toFixed(0)+'" style="--L:14;--d:'+(1.1+i*0.35)+'s"/>';
+      s+='<text class="lb" x="'+x.toFixed(0)+'" y="'+(y+r+28).toFixed(0)+'" text-anchor="middle" style="--d:'+(1.5+i*0.35)+'s">'+o.n+'</text>';
+      i++;
     });
+    // её звезда — маленькая метка в центре кадра
+    var C=plateToScreen(0.5,0.5,crop,w,h);
+    s+='<circle class="pt big" cx="'+C[0].toFixed(0)+'" cy="'+C[1].toFixed(0)+'" r="2"/>';
+    s+='<circle class="st warm dr" cx="'+C[0].toFixed(0)+'" cy="'+C[1].toFixed(0)+'" r="11" style="--L:70;--d:2.2s"/>';
   }
   else if(kind==='reticle'){
-    var x=w/2, y=h*0.42, r=30;
+    var x=w/2, y=h*0.34, r=30;
     s+='<circle class="st warm dr" cx="'+x+'" cy="'+y+'" r="'+r+'" style="--L:'+(2*Math.PI*r).toFixed(0)+';--d:.5s"/>';
     [[-1,0],[1,0],[0,-1],[0,1]].forEach(function(v,i){
       s+='<line class="st dr" x1="'+(x+v[0]*(r+9))+'" y1="'+(y+v[1]*(r+9))+'" x2="'+(x+v[0]*(r+22))+'" y2="'+(y+v[1]*(r+22))+'" style="--L:14;--d:'+(1.3+i*0.08)+'s"/>';
@@ -455,7 +494,7 @@ var px=0,py=0,tx=0,ty=0;
 function par(){
   px+=(tx-px)*.06; py+=(ty-py)*.06;
   framesEl.style.transform='translate3d('+(px*1.5).toFixed(2)+'px,'+(py*1.5).toFixed(2)+'px,0)';
-  overEl.style.transform='translate3d('+(px*2.6).toFixed(2)+'px,'+(py*2.6).toFixed(2)+'px,0)';
+  overEl.style.transform='translate3d('+(px*1.5).toFixed(2)+'px,'+(py*1.5).toFixed(2)+'px,0)';
   cv.style.transform='translate3d('+(px*3.6).toFixed(2)+'px,'+(py*3.6).toFixed(2)+'px,0)';
   requestAnimationFrame(par);
 }

@@ -129,7 +129,19 @@ svg.on .lb{opacity:1}
   transition:opacity .6s var(--e),color .3s}
 #back.off{opacity:0;pointer-events:none}
 #back:active{color:var(--cream)}
-#cnt{position:fixed;top:calc(env(safe-area-inset-top) + 16px);right:var(--pad);z-index:8;
+#snd{position:fixed;top:calc(env(safe-area-inset-top) + 10px);right:var(--pad);z-index:9;
+  font-family:var(--mono);font-weight:300;font-size:9px;letter-spacing:.26em;text-transform:uppercase;
+  color:rgba(239,231,216,.55);background:none;border:0;padding:6px 0 6px 18px;cursor:pointer;position:fixed;
+  display:none;transition:color .3s}
+#snd.show{display:block}
+#snd:active{color:var(--cream)}
+#snd .bars{position:absolute;left:0;top:50%;height:10px;width:12px;margin-top:-5px;display:flex;align-items:flex-end;gap:2px}
+#snd .bars i{display:block;width:2px;background:var(--warm);height:3px;transition:height .3s}
+#snd.playing .bars i{animation:eq 1.1s ease-in-out infinite}
+#snd.playing .bars i:nth-child(2){animation-delay:.2s}
+#snd.playing .bars i:nth-child(3){animation-delay:.45s}
+@keyframes eq{0%,100%{height:3px}50%{height:10px}}
+#cnt{position:fixed;top:calc(env(safe-area-inset-top) + 36px);right:var(--pad);z-index:8;
   font-family:var(--mono);font-weight:300;font-size:9px;letter-spacing:.26em;color:rgba(239,231,216,.36)}
 #clock{position:fixed;top:calc(env(safe-area-inset-top) + 16px);left:var(--pad);z-index:8}
 /* пульс-подсказка */
@@ -189,7 +201,9 @@ svg.on .lb{opacity:1}
 
 <div id="copy"><div class="deck" id="deck"></div></div>
 
-<div id="clock">&nbsp;</div><div id="cnt">01 / 12</div>
+<div id="clock">&nbsp;</div><div id="cnt">01 / 11</div>
+<button id="snd" aria-label="звук"><span class="bars"><i></i><i></i><i></i></span><span id="sndt">Звук</span></button>
+<audio id="au" preload="auto" loop src="assets/theme.mp3"></audio>
 <div id="tip"><i></i>Коснись экрана</div>
 <div id="bar"><button id="back">&larr;&nbsp; Назад</button><button id="go"><span class="pz"></span>Дальше&nbsp; <span class="ar">&rarr;</span></button></div>
 
@@ -636,6 +650,28 @@ addEventListener('resize',function(){
   if(nw!==WIDE){ WIDE=nw; Object.keys(imgs).forEach(function(k){ imgs[k].remove(); }); imgs={}; showFrame(STEPS[i].f, STEPS[i].pull); }
   seed(); ovCache={}; overEl.innerHTML=''; showOverlay(STEPS[i].ov);
 });
+
+/* ===================== музыка ===================== */
+var au=document.getElementById('au'), snd=document.getElementById('snd'), sndt=document.getElementById('sndt');
+var auOK=false, wantPlay=true, fadeT=null;
+au.addEventListener('canplaythrough',function(){ auOK=true; snd.classList.add('show'); },{once:true});
+au.addEventListener('error',function(){ auOK=false; snd.classList.remove('show'); });
+function fadeTo(v,ms){
+  clearInterval(fadeT); var st=au.volume, t0=performance.now();
+  fadeT=setInterval(function(){ var k=Math.min(1,(performance.now()-t0)/ms); au.volume=st+(v-st)*k; if(k>=1){clearInterval(fadeT); if(v===0) au.pause();} },50);
+}
+function startMusic(){
+  if(!auOK||!wantPlay||!au.paused) return;
+  au.volume=0; var pr=au.play();
+  if(pr&&pr.then) pr.then(function(){ fadeTo(0.6,3200); snd.classList.add('playing'); sndt.textContent='Звук'; }).catch(function(){});
+}
+snd.addEventListener('click',function(e){
+  e.stopPropagation();
+  if(au.paused){ wantPlay=true; startMusic(); }
+  else { wantPlay=false; fadeTo(0,700); snd.classList.remove('playing'); sndt.textContent='Тихо'; }
+});
+['pointerdown','touchend','keydown'].forEach(function(ev){ document.addEventListener(ev,function(){ startMusic(); },{passive:true}); });
+document.addEventListener('visibilitychange',function(){ if(document.hidden&&!au.paused){ au.pause(); } else if(!document.hidden&&wantPlay&&auOK){ startMusic(); } });
 
 /* ===================== часы Пхукета ===================== */
 function tickClock(){
